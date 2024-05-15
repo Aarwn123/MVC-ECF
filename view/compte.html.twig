@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Compte</title>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<meta content="" name="keywords">
+		<meta content="" name="description">
+
+
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<style>
+			.italic {
+				font-style: italic;
+			}
+
+			.small {
+				font-size: 0.8rem;
+			}
+		</style>
+	</head>
+	<header>
+		<nav class="navbar navbar-expand-lg bg-dark">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link active text-light" aria-current="page" href="#">Médiathèque</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-secondary" href="#">Accueil</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-secondary" href="#">Compte</a>
+						</li>
+					</ul>
+				</div>
+				<form class="d-flex" role="search">
+					<input class="form-control me-2" type="search" placeholder="Rechercher un film" aria-label="Search">
+					<button class="btn btn-outline-light" type="submit">Rechercher</button>
+				</form>
+			</div>
+		</nav>
+		<a href="compte.html.twig">Connectez vous pour créer des films</a>
+	</header>
+</html>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./view/lib/wow/wow.min.js"></script>
+<script src="./view/lib/easing/easing.min.js"></script>
+<script src="./view/lib/waypoints/waypoints.min.js"></script>
+<script src="./view/lib/counterup/counterup.min.js"></script>
+<script src="./view/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="./view/lib/tempusdominus/js/moment.min.js"></script>
+<script src="./view/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="./view/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script><!-- Template Javascript --><script src="./view/js/main.js"></script>
+
+<body>
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-4">
+				<br>
+				<h1>Créer un compte</h1>
+				<br>
+				<form class="needs-validation" novalidate method="POST" action="../controller/compte.php">
+					<input type="hidden" name="register" value="register">
+					<div class="col-8">
+						<label for="username" class="form-label fw-bold">Username</label>
+						<input type="text" class="form-control" id="username" name="username" value="" required>
+						<p class="small text-muted italic">Username can contain any letters or numbers with spaces</p>
+					</div>
+					<div class="col-8">
+						<label for="email" class="form-label fw-bold">E-mail</label>
+						<input type="text" class="form-control" id="email" name="email" value="" required>
+						<p class="small text-muted italic">Please provide your E-mail</p>
+					</div>
+					<div class="col-8">
+						<label for="password" class="form-label fw-bold">Password</label>
+						<input type="password" class="form-control" id="password" name="password" required>
+						<p class="small text-muted italic">Password should be at least 4 characters</p>
+					</div>
+					<div class="col-8">
+						<label for="confirmPassword" class="form-label fw-bold">Password (Confirm)</label>
+						<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+						<p class="small text-muted italic">Please confirm password</p>
+					</div>
+					<br>
+					<div class="col-8 text-center">
+						<button class="btn btn-primary" type="submit" name="register">Register</button>
+					</div>
+				</form>
+			</div>
+
+			<div class="col-4">
+				<br>
+				<h1>Identification</h1>
+				<br>
+				<form class="needs-validation" novalidate method="POST" action="../controller/compte.php">
+					<input type="hidden" name="login" value="login">
+					<div class="col-8">
+						<label for="email" class="form-label fw-bold">E-mail</label>
+						<input type="text" class="form-control" id="email" name="email" value="" required>
+						<p class="small text-muted italic">Please provide your E-mail</p>
+					</div>
+					<div class="col-8">
+						<label for="password" class="form-label fw-bold">Password</label>
+						<input type="password" class="form-control" id="password" name="password" required>
+						<p class="small text-muted italic">Password should be at least 4 characters</p>
+					</div>
+					<br>
+					<div class="col-8 text-center">
+						<button class="btn btn-primary" type="submit" name="login">Login</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</body></html>
