@@ -46,14 +46,5 @@ if (array_key_exists($controller, $routes)) {
 }
 
 
-$films = FilmDAO::getAll();
-
-echo $twig->render(
-    'index.html.twig',
-    [
-        'films' => $films
-    ]
-);
-
 // ************          Affichage du footer  ***************************************
 require './controller/footer.php';

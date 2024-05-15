@@ -5,12 +5,13 @@ namespace Model\repository;
 use Model\repository\RoleDAO;
 
 //On appelle la fonction getAll()
-$roleDAO = new RoleDAO();
+$filmDAO = new FilmDAO();
 
-$roles = $roleDAO->getAll();
+$films = $filmDAO->getAll();
 
 unset($_SESSION['user']);
 // $_SESSION['user'] = 'vince@afpa.com';
 
 //On affiche le template Twig correspondant
-echo $twig->render('home.html.twig', ['roles' => $roles]);
+
+echo $twig->render('home.html.twig', ['films' => $films]);
