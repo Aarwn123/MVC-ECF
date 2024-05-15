@@ -10,31 +10,42 @@
 
 	<body>
 		<main>
-			{# initialisation de la boucle #}
-			{% for item in films %}
-				{# début du carrousel #}
-				<div id="carouselExample" class="col-3 carousel slide {{loop.first ? 'active' : ''}}">
-					<div class=" carousel-inner">
-						<div class="carousel-item active">
+			{# début du carrousel #}
+			<div id="carouselExample" class="object-fit-contain border rounded col-5 carousel slide">
+				<div class="carousel-inner">
+					{% for item in films %}
+						<div class="carousel-item {% if loop.first %} active {% endif %}">
 							<h1>
-								{{loop.index}}
-								<img src="{{item.affiche}}" class="d-block w-100" alt="...">
-
-							</div>
-							{# fin de la boucle #}
-						{% endfor %}
-					</div>
-					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
-				</div>
-				{# fin du carrousel #}
-			</body>
-		</body>
+								{{ loop.index }}
+								-
+								{{ item.titre }}
+							</h1>
+							<img src="{{ item.affiche }}" class="d-block w-100" alt="...">
+							<h6>
+								Réalisé en
+								{{ item.annee }}
+								par
+								{{ item.realisateur }}
+								avec :
+								{% for acteur in item.acteurs %}
+									{{ acteur.nom }}
+									{{ acteur.prenom }}
+									{% if not loop.last %},
+									{% endif %}
+								{% endfor %}
+							</h6>
+						</div>
+					{% endfor %}
+				</body>
+			</html>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
 	</body>
-</html></main></body></html><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html></div>{# fin du carrousel #}</body></body></html></body></html></main></body></html><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

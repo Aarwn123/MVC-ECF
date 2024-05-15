@@ -10,9 +10,10 @@ class Film
     private $affiche;
     private $annee;
     private $role = [];
+    private $acteurs = [];
 
 
-    public function __construct(int $id, string $titre, string $realisateur, string $affiche, int $annee, array $role = null)
+    public function __construct(int $id, string $titre, string $realisateur, string $affiche, int $annee, array $role = null, array $acteurs)
     {
         $this->setId($id);
         $this->setTitre($titre);
@@ -20,6 +21,7 @@ class Film
         $this->setAffiche($affiche);
         $this->setAnnee($annee);
         $this->setRole($role);
+        $this->setActeurs($acteurs);
     }
 
     /**
@@ -139,6 +141,30 @@ class Film
     public function setRole($role)
     {
         $this->role[] = $role;
+
+        return $this;
+    }
+    public function addActeur($acteur)
+    {
+        $this->acteurs[] = $acteur;
+    }
+
+    /**
+     * Get the value of acteurs
+     */
+    public function getActeurs()
+    {
+        return $this->acteurs;
+    }
+
+    /**
+     * Set the value of acteurs
+     *
+     * @return  self
+     */
+    public function setActeurs($acteurs)
+    {
+        $this->acteurs = $acteurs;
 
         return $this;
     }
