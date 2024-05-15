@@ -1,10 +1,13 @@
 <?php
 
+namespace Model\repository;
+
+
 // ******************** Controller pricipal ***************************************
+require_once './config/init.php';
 require_once './model/entity/Acteur.php';
 require_once './model/entity/Film.php';
 require_once './model/entity/Role.php';
-require_once './config/init.php';
 require_once './model/repository/ActeurDAO.php';
 require_once './model/repository/RoleDAO';
 require_once './model/repository/FilmDAO';
@@ -42,6 +45,15 @@ if (array_key_exists($controller, $routes)) {
     require 'controller/erreur.php';
 }
 
+
+$films = FilmDAO::getAll();
+
+echo $twig->render(
+    'index.html.twig',
+    [
+        'films' => $films
+    ]
+);
 
 // ************          Affichage du footer  ***************************************
 require './controller/footer.php';
