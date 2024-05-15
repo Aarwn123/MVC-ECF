@@ -4,15 +4,16 @@ namespace Model\entity;
 
 class Role
 {
-    private $id;
-    private $nom;
-    private $prenom;
 
-    public function __construct(int $id, string $nom, string $prenom)
+    private $id;
+    private $personnage;
+    private $acteur;
+
+    public function __construct(string $id, string $personnage, Acteur $acteur)
     {
         $this->setId($id);
-        $this->setNom($nom);
-        $this->setPrenom($prenom);
+        $this->setPersonnage($personnage);
+        $this->setActeur($acteur);
     }
 
     /**
@@ -36,41 +37,41 @@ class Role
     }
 
     /**
-     * Get the value of nom
+     * Get the value of personnage
      */
-    public function getNom()
+    public function getPersonnage()
     {
-        return $this->nom;
+        return $this->personnage;
     }
 
     /**
-     * Set the value of nom
+     * Set the value of personnage
      *
      * @return  self
      */
-    public function setNom($nom)
+    public function setPersonnage($personnage)
     {
-        $this->nom = $nom;
+        $this->personnage = $personnage;
 
         return $this;
     }
 
     /**
-     * Get the value of prenom
+     * Get the value of acteur
      */
-    public function getPrenom()
+    public function getActeur()
     {
-        return $this->prenom;
+        return $this->acteur;
     }
 
     /**
-     * Set the value of prenom
+     * Set the value of acteur
      *
      * @return  self
      */
-    public function setPrenom($prenom)
+    public function setActeur($acteur)
     {
-        $this->prenom = $prenom;
+        $this->acteur = $acteur;
 
         return $this;
     }

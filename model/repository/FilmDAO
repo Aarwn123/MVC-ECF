@@ -14,12 +14,12 @@ class FilmDAO extends Dao
     public static function getAll(): array
     {
 
-        $query = self::$bdd->prepare("SELECT id, titre, realisateur, affiche, annee  FROM film");
+        $query = self::$bdd->prepare("SELECT id, titre, realisateur, affiche, annee, genre  FROM film");
         $query->execute();
         $film = array();
 
         while ($data = $query->fetch()) {
-            $film[] = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
+            $film[] = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $data['role'], $data['genre']);
         }
         return ($film);
     }
@@ -28,8 +28,8 @@ class FilmDAO extends Dao
     public static function addOne($data): bool
     {
 
-        $requete = 'INSERT INTO film (titre, realisateur, affiche, annee) VALUES (:titre , :realisateur, :affiche, :annee)';
-        $valeurs = ['titre' => $data->getTitre(), 'realisateur' => $data->getRealisateur(), 'affiche' => $data->getAffiche(), 'annee' => $data->getAnnee()];
+        $requete = 'INSERT INTO film (titre, realisateur, affiche, annee, genre, role) VALUES (:titre , :realisateur, :affiche, :annee, :genre,  :role)';
+        $valeurs = ['titre' => $data->getTitre(), 'realisateur' => $data->getRealisateur(), 'affiche' => $data->getAffiche(), 'annee' => $data->getAnnee(), 'genre' => $data->getGenre(), 'role' => $data->getRole()];
         $insert = self::$bdd->prepare($requete);
         return $insert->execute($valeurs);
     }
@@ -40,13 +40,13 @@ class FilmDAO extends Dao
         $query = self::$bdd->prepare('SELECT * FROM film WHERE id = :id_film');
         $query->execute(array(':id_film' => $id));
         $data = $query->fetch();
-        return new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
+        return new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], $data['genre'], $data['role']);
     }
 
     //Deleter 1 offre par son id
     public static function deleteOne(int $id): bool
     {
-        $query = self::$bdd->prepare('DELETE FROM film WHERE acteur.id = :idFilm');
+        $query = self::$bdd->prepare('DELETE FROM film WHERE film.id = :idFilm');
         $query->execute(array(':idFilm' => $id));
         return $query->rowCount() == 1 ? true : false;
     }
