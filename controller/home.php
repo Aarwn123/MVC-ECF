@@ -1,10 +1,9 @@
 <?php
 
 
-namespace Model\repository;
-
 
 use Model\repository\FilmDAO;
+
 // require_once './model/repository/FilmDAO';
 
 

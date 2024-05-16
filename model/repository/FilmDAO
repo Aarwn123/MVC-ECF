@@ -6,7 +6,7 @@ namespace Model\repository;
 
 
 
-// use Model\entity\Acteur;
+use Model\entity\Acteur;
 use Model\entity\Film;
 use Model\entity\Role;
 use Model\repository\Dao;
@@ -28,13 +28,16 @@ class FilmDAO extends Dao
             $film = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], [], []);
 
             // Création d'un nouvel objet role
-            // $role = new Role($data['id_role'], $data['id_acteur_role'], $data['id_film_role'], $data['personnage_role']);
+            $role = new Role($data['id_role'], $data['id_acteur_role'], $data['id_film_role'], $data['personnage_role']);
 
             // Création d'un nouvel objet Acteur avec les noms récupérés
-            // $acteur = new Acteur($data['id_acteur'], $data['nom_acteur'], $data['prenom_acteur']);
+            $acteur = new Acteur($data['id_acteur'], $data['nom_acteur'], $data['prenom_acteur']);
 
             // Ajout du role au film
-            // $film->addRole($role);
+            $film->addRole($role);
+
+            // Ajout d'un acteur au role
+            $role = $acteur;
 
             // Ajout du film à la liste des films
             $films[] = $film;

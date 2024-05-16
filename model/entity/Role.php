@@ -9,7 +9,7 @@ class Role
     private $personnage;
     private $acteur;
 
-    public function __construct(string $id, string $personnage, Acteur $acteur)
+    public function __construct(string $id, string $personnage, int $acteur)
     {
         $this->setId($id);
         $this->setPersonnage($personnage);

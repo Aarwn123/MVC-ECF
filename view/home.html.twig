@@ -17,11 +17,10 @@
 						{{ item.realisateur }}
 						avec :
 
-						{% for acteur in item.acteurs %}
-							{{ acteur.nom }}
+						{% for role in item.role %}
+							{{ role.personnage }}
 							{{ acteur.prenom }}
-							{% if not loop.last %},
-							{% endif %}
+							{% if not loop.last %}{% endif %}
 						{% endfor %}
 					</h6>
 				</div>
