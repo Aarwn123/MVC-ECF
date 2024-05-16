@@ -22,12 +22,14 @@
 						{% for role in item.role %}
 							{{role.acteur.prenom}}
 							{{role.acteur.nom}}
-						{% endfor %}
-						dans le role de
-						{% for role in item.role %}
+
+							dans le role de
+
 							{{ role.personnage }}
 							{% if not loop.last %}{% endif %}
+							<br>
 						{% endfor %}
+
 					</h6>
 				</div>
 			{% endfor %}

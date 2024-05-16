@@ -22,11 +22,17 @@ class FilmDAO extends Dao
 
         $query->execute();
         $films = [];
+        $precedent = null;
 
         while ($data = $query->fetch()) {
             // Création d'un nouvel objet Film
-
-            $film = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
+            if ($data['id'] != $precedent) {
+                $film = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
+                $precedent = $data['id'];
+                var_dump($precedent);
+                // Ajout du film à la liste des films
+                $films[] = $film;
+            }
 
 
             // Création d'un nouvel objet Acteur avec les noms récupérés
@@ -40,12 +46,10 @@ class FilmDAO extends Dao
 
             // Ajout du role au film
             $film->addRole($role);
-
-            // Ajout du film à la liste des films
-            $films[] = $film;
         }
         return $films;
     }
+
 
     //Ajouter une offre
     public static function addOne($data): bool
