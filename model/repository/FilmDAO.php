@@ -25,19 +25,21 @@ class FilmDAO extends Dao
 
         while ($data = $query->fetch()) {
             // Création d'un nouvel objet Film
-            $film = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], [], []);
 
-            // Création d'un nouvel objet role
-            $role = new Role($data['id_role'], $data['id_acteur_role'], $data['id_film_role'], $data['personnage_role']);
+            $film = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
+
 
             // Création d'un nouvel objet Acteur avec les noms récupérés
             $acteur = new Acteur($data['id_acteur'], $data['nom_acteur'], $data['prenom_acteur']);
 
+            // Création d'un nouvel objet role
+            $role = new Role($data['id_role'],  $data['personnage_role'], $acteur);
+
+            // Ajout de l'acteur au rôle
+            $role->setActeur($acteur);
+
             // Ajout du role au film
             $film->addRole($role);
-
-            // Ajout d'un acteur au role
-            $role = $acteur;
 
             // Ajout du film à la liste des films
             $films[] = $film;

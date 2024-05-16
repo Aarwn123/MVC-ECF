@@ -75,4 +75,10 @@ class Acteur
 
         return $this;
     }
+
+    public function addRole(Role $role)
+    {
+        // Ajoute le rôle directement à l'acteur
+        $role->setActeur($this);
+    }
 }

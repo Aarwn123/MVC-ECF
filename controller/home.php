@@ -4,7 +4,7 @@
 
 use Model\repository\FilmDAO;
 
-// require_once './model/repository/FilmDAO';
+// require_once './model/repository/FilmDAO.php';
 
 
 
@@ -18,5 +18,5 @@ $films = $filmDAO->getAll();
 // $_SESSION['user'] = 'vince@afpa.com';
 
 //On affiche le template Twig correspondant
-
+// var_dump($films);
 echo $twig->render('home.html.twig', ['films' => $films]);

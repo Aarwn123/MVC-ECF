@@ -2,6 +2,8 @@
 
 namespace Model\entity;
 
+use Model\entity\Acteur;
+
 class Role
 {
 
@@ -9,7 +11,7 @@ class Role
     private $personnage;
     private $acteur;
 
-    public function __construct(string $id, string $personnage, int $acteur)
+    public function __construct(string $id, string $personnage, Acteur $acteur)
     {
         $this->setId($id);
         $this->setPersonnage($personnage);

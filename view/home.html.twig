@@ -11,27 +11,35 @@
 					</h1>
 					<img src="{{ item.affiche }}" class="d-block w-100" alt="...">
 					<h6>
+
 						Réalisé en
 						{{ item.annee }}
 						par
 						{{ item.realisateur }}
 						avec :
 
+
+						{% for role in item.role %}
+							{{role.acteur.prenom}}
+							{{role.acteur.nom}}
+						{% endfor %}
+						dans le role de
 						{% for role in item.role %}
 							{{ role.personnage }}
-							{{ acteur.prenom }}
 							{% if not loop.last %}{% endif %}
 						{% endfor %}
 					</h6>
 				</div>
 			{% endfor %}
-		</div>
-		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Next</span>
-		</button>
-	</main>
+
+		</h6>
+	</div>
+	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Previous</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Next</span>
+	</button>
+</main></div>
