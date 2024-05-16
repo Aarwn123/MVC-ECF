@@ -1,18 +1,5 @@
 <?php
 
-namespace Model\repository;
-
-
-// ******************** Controller pricipal ***************************************
-require_once './config/init.php';
-require_once './model/entity/Acteur.php';
-require_once './model/entity/Film.php';
-require_once './model/entity/Role.php';
-require_once './model/repository/ActeurDAO.php';
-require_once './model/repository/RoleDAO';
-require_once './model/repository/FilmDAO';
-
-
 
 
 // Initialisation de l'environnement

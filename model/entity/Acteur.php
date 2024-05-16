@@ -8,7 +8,6 @@ class Acteur
     private $id;
     private $nom;
     private $prenom;
-    private $acteurs = [];
 
     public function __construct(int $id, string $nom, string $prenom)
     {
@@ -75,18 +74,5 @@ class Acteur
         $this->prenom = $prenom;
 
         return $this;
-    }
-
-    public function addActeur(Acteur $acteur)
-    {
-        $this->acteurs[] = $acteur;
-    }
-
-    /**
-     * Récupère la liste des acteurs du film
-     */
-    public function getActeurs(): array
-    {
-        return $this->acteurs;
     }
 }

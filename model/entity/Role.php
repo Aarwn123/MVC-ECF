@@ -75,4 +75,9 @@ class Role
 
         return $this;
     }
+
+    public function addRole($role)
+    {
+        $this->acteur[] = $role;
+    }
 }
