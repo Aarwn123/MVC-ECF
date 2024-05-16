@@ -28,7 +28,7 @@ class FilmDAO extends Dao
             $film = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], [], []);
 
             // Création d'un nouvel objet role
-            $role = new Role($data['id_role'], $data['id_acteur_role'], $data['id_film_role'], $data['personnage_role']);
+            // $role = new Role($data['id_role'], $data['id_acteur_role'], $data['id_film_role'], $data['personnage_role']);
 
             // Création d'un nouvel objet Acteur avec les noms récupérés
             // $acteur = new Acteur($data['id_acteur'], $data['nom_acteur'], $data['prenom_acteur']);

@@ -1,14 +1,18 @@
 <?php
 
+
 namespace Model\repository;
 
 
 use Model\repository\FilmDAO;
+// require_once './model/repository/FilmDAO';
+
 
 
 //On appelle la fonction getAll()
 $filmDAO = new FilmDAO();
 $films = $filmDAO->getAll();
+
 
 
 // unset($_SESSION['user']);
