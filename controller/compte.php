@@ -1,65 +1,59 @@
 <?php
-require_once '../model/repository/SPDO.php';
 
+/*require_once '../model/repository/SPDO.php';
+require_once '../model/repository/Dao.php';
+require_once '../model/repository/UserDAO.php';
+require_once '../model/entity/User.php';
+*/
+
+
+namespace Model\repository;
+
+use Model\entity\User;
+use Model\repository\UserDAO;
+
+
+// Obtention de l'instance de UserDAO
+$userDAO = new UserDAO();
 
 // Création de compte
-
-// Vérification si le formulaire de création de compte a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
-    // Récupération des données du formulaire
+
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirmPassword'];
 
-    // Vérification si les mots de passe correspondent
     if ($password !== $confirmPassword) {
         echo "Les mots de passe ne correspondent pas.";
         exit;
     }
 
-    // Connexion à la base de données depuis SPDO
-    $pdo = SPDO::getInstance()->getPdo();
+    $data = new User($username, $email, $password);
 
-    // Préparation de la requête SQL pour insérer les données dans la base de données
-    $sql = "INSERT INTO user (username, email, password) VALUES (?, ?, ?)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$username, $email, $password]);
-
-    // Vérification si l'insertion a réussi
-    if ($stmt->rowCount() > 0) {
+    if ($userDAO->addOne($data)) {
         echo "Compte créé avec succès.";
     } else {
         echo "Erreur lors de la création du compte.";
     }
 }
-
-
+/*
 // Identification
-
-// Vérification si le formulaire de connexion a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-    // Récupération des données du formulaire
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Connexion à la base de données depuis SPDO
-    $pdo = SPDO::getInstance()->getPdo();
+    $user = $userDAO->getOne($email, $password);
 
-    // Préparation de la requête SQL pour vérifier l'existence du compte
-    $sql = "SELECT username FROM user WHERE email = ? AND password = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$email, $password]);
-
-    // Vérification si un compte correspondant a été trouvé
-    if ($stmt->rowCount() > 0) {
-        // L'utilisateur est correctement connecté
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        $username = $row['username'];
-        echo "Connexion réussie. Bienvenue, " . $username . " !";
-        // Redirection de l'utilisateur vers une autre page
-        header('Location: ../view/compte.html.twig');
+    if ($user) {
+        echo "Connexion réussie. Vous pouvez rediriger l'utilisateur.";
+        // Redirection de l'utilisateur
+        // header('Location: ../view/compte.html.twig');
+        // exit;
     } else {
         echo "Identifiants incorrects.";
     }
 }
+*/
+
+echo $twig->render('compte.html.twig', ['user' => $userDAO]);

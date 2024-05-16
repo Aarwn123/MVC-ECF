@@ -1,24 +1,26 @@
 <?php
+
+namespace Model\repository;
+
 class SPDO
 {
+    private $PDOInstance = null;
     private static $instance = null;
-    private $pdo;
 
     private function __construct()
     {
-        $this->pdo = new \PDO("mysql:host=localhost:3306;dbname=cinema", "webuser", "123");
+        $this->PDOInstance = new \PDO("mysql:host=localhost:3306;dbname=cinema", "webuser", "123");
     }
-
     public static function getInstance()
     {
-        if (self::$instance === null) {
-            self::$instance = new self();
+        if (is_null(self::$instance)) {
+            self::$instance = new SPDO();
         }
-        return self::$instance;
+        return self::$instance->getPDO();
     }
 
-    public function getPdo()
+    private function getPDO()
     {
-        return $this->pdo;
+        return $this->PDOInstance;
     }
 }
