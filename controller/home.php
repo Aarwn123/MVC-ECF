@@ -2,7 +2,9 @@
 
 namespace Model\repository;
 
-use Model\repository\RoleDAO;
+
+use Model\repository\FilmDAO;
+use Model\repository\ActeurDAO;
 
 //On appelle la fonction getAll()
 $filmDAO = new FilmDAO();
