@@ -1,28 +1,67 @@
-{% if message is null %}
-	<div>
-		<form action="creer" method="post">
-			<div class="container">
-				<label for="title">
-					<b>Titre</b>
-				</label>
-				<input type="text" placeholder="Enter Title" name="title" required>
+<div class="container col-10">
+	<form class="row g-3" method="POST" action="creer">
+		<div class="col-md-6">
+			<label for="titre" class="form-label">Titre</label>
+			<input name="titre" type="text" class="form-control" id="titre" required>
+		</div>
+		<div class="col-md-6">
+			<label for="annee" class="form-label">Année</label>
+			<input name="annee" type="text" class="form-control" id="annee" required>
+		</div>
+		<div class="col-md-12">
+			<label for="affiche" class="form-label">Affiche</label>
+			<input name="affiche" type="text" class="form-control" id="affiche" required>
+		</div>
+		<div class="col-md-6">
+			<label for="realisateur" class="form-label">Réalisateur</label>
+			<input name="realisateur" type="text" class="form-control" id="realisateur" required>
+		</div>
+		<div class="col-md-6">
+			<label for="genre" class="form-label">Genre</label>
+			<select name="genre" class="form-select" aria-label="Default select example" required>
+				<option selected disabled value="">Sélectionner le genre du film</option>
+				<option value="Action">Action</option>
+				<option value="Aventure">Aventure</option>
+				<option value="Animation">Animation</option>
+				<option value="Comédie">Comédie</option>
+			</select>
+		</div>
+		<div class="col-12" id="roles-container">
+			<!-- Les rôles dynamiques seront ajoutés ici -->
+		</div>
+		<div class="col-8">
+			Role(s) :<button type="button" class="btn btn-secondary" onclick="addRole()">Ajouter</button>
+		</div>
+		<div class="col-12 d-flex justify-content-center mt-5">
+			<button type="submit" name="submit" class="btn btn-primary">Creer</button>
+		</div>
+	</form>
+</div>
 
-				<label for="description">
-					<b>Description</b>
-				</label>
-				<input type="text" placeholder="Enter Description" name="description" required>
-				<button type="submit">Créer Offre</button>
-			</div>
-		</form>
-	</div>
-{% else %}
-	<div>
-		<p>{{message}}
-			:</p><br>
-		{% if offre is defined %}
-			{{offre.getTitle}}
-			:
-			{{offre.getDescription}}
-		{% endif %}
-	</div>
-{% endif %}
+<script>
+    function addRole() {
+        const container = document.getElementById('roles-container');
+        const roleDiv = document.createElement('div');
+        roleDiv.className = 'form-row role-input mb-2';
+        roleDiv.innerHTML = `
+            <div class="col-md-4 mb-3">
+                <input type="text" class="form-control" name="roles[][personnage]" placeholder="Personnage" required>
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="text" class="form-control" name="roles[][nom]" placeholder="Nom" required>
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="text" class="form-control" name="roles[][prenom]" placeholder="Prénom" required>
+            </div>
+            <div class="col-md-2 mb-3">
+                <button type="button" class="btn btn-secondary" onclick="removeRole(this)">Supprimer</button>
+            </div>
+        `;
+        container.appendChild(roleDiv);
+    }
+
+    function removeRole(button) {
+        button.closest('.form-row').remove();
+    }
+</script>
+
