@@ -17,15 +17,14 @@ class UserDAO extends Dao
         return $insert->execute($valeurs);
     }
 
-    // Recherche d'un compte qui a les meme identifiants que ceux entrés pour s'y sonncecter
-    public static function getOneByEmailAndPassword($email, $password): ?User
+    // Recherche d'un compte par e-mail
+    public static function getOneByEmail($email): ?User
     {
-        // Requête SQL pour récupérer l'utilisateur en fonction de son e-mail et mot de passe
-        $requete = 'SELECT * FROM user WHERE email = :email AND password = :password';
-        $valeurs = ['email' => $email, 'password' => $password];
+        // Requête SQL pour récupérer l'utilisateur en fonction de son e-mail
+        $requete = 'SELECT * FROM user WHERE email = :email';
+        $valeurs = ['email' => $email];
         $query = self::$bdd->prepare($requete);
         $query->execute($valeurs);
-        // Récupération du résultat sous forme d'objet User
         $result = $query->fetch(\PDO::FETCH_ASSOC);
 
         if ($result) {
