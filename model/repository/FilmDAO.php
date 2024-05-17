@@ -24,14 +24,15 @@ class FilmDAO extends Dao
         $films = [];
         $precedent = null;
 
+
         while ($data = $query->fetch()) {
             // Création d'un nouvel objet Film
             if ($data['id'] != $precedent) {
                 $film = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
                 $precedent = $data['id'];
-                var_dump($precedent);
-                // Ajout du film à la liste des films
+
                 $films[] = $film;
+                // Ajout du film à la liste des films
             }
 
 
@@ -43,10 +44,11 @@ class FilmDAO extends Dao
 
             // Ajout de l'acteur au rôle
             $role->setActeur($acteur);
-
-            // Ajout du role au film
+            // Ajout du role au film    ya un NULL ici !!!!
             $film->addRole($role);
+            // var_dump($role);
         }
+
         return $films;
     }
 
@@ -67,7 +69,7 @@ class FilmDAO extends Dao
         $query = self::$bdd->prepare('SELECT * FROM film WHERE id = :id_film');
         $query->execute(array(':id_film' => $id));
         $data = $query->fetch();
-        return new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee'], [], []);
+        return new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
     }
 
     //Deleter 1 offre par son id
