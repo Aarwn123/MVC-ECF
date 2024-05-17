@@ -31,6 +31,7 @@
                     </li>
                 </ul>
             </div>
+            <!-- formulaire de recherche de film -->
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Rechercher un film" aria-label="Search">
                 <button class="btn btn-outline-light" type="submit">Rechercher</button>
@@ -54,3 +55,18 @@
 <script src="./view/lib/tempusdominus/js/moment-timezone.min.js"></script>
 <script src="./view/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script><!-- Template Javascript -->
 <script src="./view/js/main.js"></script>
+
+
+
+
+
+
+
+
+if (($_POST 'nomActeur' = $data['nom_acteur']) && ($_POST 'prenomActeur' = $data['prenom_acteur'])) {
+echo "cet acteur existe deja"
+}
+else
+{
+$acteur = new Acteur($data['id_acteur'], $data['nom_acteur'], $data['prenom_acteur']);
+}

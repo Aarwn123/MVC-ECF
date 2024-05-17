@@ -63,6 +63,7 @@ class FilmDAO extends Dao
                                       FROM film 
                                       INNER JOIN role ON film.id = role.id_film
                                       INNER JOIN acteur ON role.id_acteur = acteur.id
+                                    --   On défini sur quoi on veut établir la recherche. Ici, le titre du film. On y associe le mot clé 'recherche'
                                       WHERE film.titre LIKE :recherche
                                       ORDER BY film.id");
 

@@ -1,51 +1,4 @@
 <main>
-	{# début du carrousel
-						<div id="carouselExample" class="object-fit-contain border rounded col-5 carousel slide">
-							<div class="carousel-inner">
-								{% for film in films %}
-									<div class="carousel-item {% if loop.first %} active {% endif %}">
-										<h1>
-											{{ loop.index }}
-											-
-											{{ film.titre }}
-										</h1>
-										<img src="{{ film.affiche }}" class="d-block w-100" alt="...">
-										<h6>
-											<p>
-												Réalisé en
-												{{ film.annee }}
-												par
-												{{ film.realisateur }}
-												avec :</p>
-											{% for role in film.role %}
-												<p>
-					
-													{{role.acteur.prenom}}
-													{{role.acteur.nom}}
-					
-													dans le role de
-					
-													{{ role.personnage }}
-													{% if not loop.last %}{% endif %}
-													<br>
-												</p>
-											{% endfor %}
-					
-										</h6>
-									</div>
-								{% endfor %}
-					
-							</h6>
-						</div>
-						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
-					</main></div> #}
 
 	<div class="container mt-5">
 		<div class="row">
@@ -77,8 +30,8 @@
 									</div>
 
 									{# <div class="col-md-1 d-flex" style="height: 400px;">
-																																				<div class="vr"></div>
-																																				</div> #}
+																																																															<div class="vr"></div>
+																																																															</div> #}
 
 									<div class="col-md-6 text-center">
 										<img src="{{ film.getAffiche }}" class="img-fluid w-50 rounded" alt="{{ film.getTitre }}">
@@ -116,4 +69,4 @@
 			</button>
 		</div>
 	</div>
-</body>
+</main>
