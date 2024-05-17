@@ -1,16 +1,15 @@
+
 <?php
 
-namespace Model\repository;
-
-use Model\repository\RoleDAO;
+use Model\repository\FilmDAO;
 
 //On appelle la fonction getAll()
-$roleDAO = new RoleDAO();
-
-$roles = $roleDAO->getAll();
-
-unset($_SESSION['user']);
-// $_SESSION['user'] = 'vince@afpa.com';
+$filmDAO = new FilmDAO();
+if (isset($_POST['recherche'])) {
+    $films = $filmDAO->getAll($_POST['recherche']);
+} else {
+    $films = $filmDAO->getAll();
+}
 
 //On affiche le template Twig correspondant
-echo $twig->render('home.html.twig', ['roles' => $roles]);
+echo $twig->render('home.html.twig', ['films' => $films,]);
