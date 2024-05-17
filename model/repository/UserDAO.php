@@ -18,7 +18,7 @@ class UserDAO extends Dao
     }
 
     // Recherche d'un compte par e-mail
-    public static function getOneByEmail($email): ?User
+    public static function getByEmail($email): ?User
     {
         // Requête SQL pour récupérer l'utilisateur en fonction de son e-mail
         $requete = 'SELECT * FROM user WHERE email = :email';
