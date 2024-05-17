@@ -10,8 +10,14 @@ use Model\repository\FilmDAO;
 
 //On appelle la fonction getAll()
 $filmDAO = new FilmDAO();
-$films = $filmDAO->getAll();
-array_filter($films);
+if (isset($_POST['recherche'])) {
+    $films = $filmDAO->getAll($_POST['recherche']);
+} else {
+    $films = $filmDAO->getAll();
+}
+
+
+
 
 
 // unset($_SESSION['user']);
@@ -20,5 +26,7 @@ array_filter($films);
 //On affiche le template Twig correspondant
 // var_dump($films);
 
-// var_dump($films);
-echo $twig->render('home.html.twig', ['films' => $films]);
+// echo '<pre>';
+// print_r($films);
+// echo '</pre>';
+echo $twig->render('home.html.twig', ['films' => $films,]);

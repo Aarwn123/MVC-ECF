@@ -13,7 +13,7 @@ class Film
 
 
 
-    public function __construct(int $id, string $titre, string $realisateur, string $affiche, int $annee, array $role = null)
+    public function __construct(int $id, string $titre, string $realisateur, string $affiche, int $annee, array $role = array())
     {
         $this->setId($id);
         $this->setTitre($titre);
@@ -139,7 +139,7 @@ class Film
      */
     public function setRole($role)
     {
-        $this->role[] = $role;
+        $this->role = $role;
 
         return $this;
     }
