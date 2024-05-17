@@ -1,59 +1,65 @@
 <?php
 
-/*require_once '../model/repository/SPDO.php';
-require_once '../model/repository/Dao.php';
-require_once '../model/repository/UserDAO.php';
-require_once '../model/entity/User.php';
-*/
-
-
-namespace Model\repository;
+//unset($_SESSION['user']);
 
 use Model\entity\User;
 use Model\repository\UserDAO;
 
-
-// Obtention de l'instance de UserDAO
 $userDAO = new UserDAO();
+$message = "";
+$erreurIdentifiants = false; // Pour contrôler la création du compte
 
-// Création de compte
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
-
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirmPassword'];
 
-    if ($password !== $confirmPassword) {
-        echo "Les mots de passe ne correspondent pas.";
-        exit;
+    if ($username === '') {
+        $message = "Veuillez entrer un nom d'utilisateur";
+        $erreurIdentifiants = true;
+    } elseif (!preg_match("/^\S+@\S+\.\S+$/", $email)) {
+        $message = "Adresse e-mail invalide.";
+        $erreurIdentifiants = true;
+    } elseif (UserDAO::emailExists($email)) {
+        $message = "Un compte avec cette adresse e-mail existe déjà.";
+        $erreurIdentifiants = true;
+    } elseif (!preg_match("/^.{4,}$/", $password)) {
+        $message = "Le mot de passe doit faire au moins 4 caractères.";
+        $erreurIdentifiants = true;
+    } elseif ($password !== $confirmPassword) {
+        $message = "Les mots de passe ne correspondent pas.";
+        $erreurIdentifiants = true;
     }
 
-    $data = new User($username, $email, $password);
-
-    if ($userDAO->addOne($data)) {
-        echo "Compte créé avec succès.";
-    } else {
-        echo "Erreur lors de la création du compte.";
+    if (!$erreurIdentifiants) {
+        $data = new User(0, $username, $email, $password);
+        if ($userDAO->addOne($data)) {
+            $message = 'Compte créé';
+            header('Location: compte');
+            exit;
+        } else {
+            $message = "Erreur lors de la création du compte.";
+        }
     }
 }
-/*
-// Identification
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $user = $userDAO->getOne($email, $password);
+    $user = $userDAO->getOneByEmailAndPassword($email, $password);
 
     if ($user) {
-        echo "Connexion réussie. Vous pouvez rediriger l'utilisateur.";
-        // Redirection de l'utilisateur
-        // header('Location: ../view/compte.html.twig');
-        // exit;
+        $message = "Connexion réussie.";
+        $_SESSION['user'] = $user->getUsername();
+        header('Location: compte');
+        exit;
     } else {
-        echo "Identifiants incorrects.";
+        $message = "Identifiants incorrects.";
     }
 }
-*/
 
-echo $twig->render('compte.html.twig', ['user' => $userDAO]);
+echo $twig->render('compte.html.twig', [
+    'message' => $message
+]);
