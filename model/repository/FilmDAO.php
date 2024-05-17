@@ -13,48 +13,6 @@ use Model\repository\Dao;
 
 class FilmDAO extends Dao
 {
-    // public static function getAll($recherche = ""): array
-    // {
-    //     $query = self::$bdd->prepare("SELECT film.id, film.titre, film.realisateur, film.affiche, film.annee, acteur.nom AS nom_acteur, acteur.prenom AS prenom_acteur, acteur.id AS id_acteur, role.id AS id_role, role.id_acteur AS id_acteur_role, role.id_film AS id_film_role, role.personnage as personnage_role 
-    //                               FROM film 
-    //                               INNER JOIN role ON film.id = role.id_film
-    //                               INNER JOIN acteur ON role.id_acteur = acteur.id
-    //                               WHERE film.titre LIKE :recherche
-    //                               ORDER BY id");
-
-    //     $recherche = $recherche . '%';
-
-    //     $query->execute(['recherche' => $recherche]);
-    //     $films = [];
-    //     $precedent = null;
-
-
-    //     while ($data = $query->fetch()) {
-    //         // Création d'un nouvel objet Film
-    //         if ($data['id'] != $precedent) {
-    //             $film = new Film($data['id'], $data['titre'], $data['realisateur'], $data['affiche'], $data['annee']);
-    //             $precedent = $data['id'];
-
-    //             $films[] = $film;
-    //             // Ajout du film à la liste des films
-    //         }
-
-
-    //         // Création d'un nouvel objet Acteur avec les noms récupérés
-    //         $acteur = new Acteur($data['id_acteur'], $data['nom_acteur'], $data['prenom_acteur']);
-
-    //         // Création d'un nouvel objet role
-    //         $role = new Role($data['id_role'],  $data['personnage_role'], $acteur);
-
-    //         // Ajout de l'acteur au rôle
-    //         // $role->setActeur($acteur);
-    //         // Ajout du role au film    ya un NULL ici !!!!
-    //         $film->addRole($role);
-    //         // var_dump($role);
-    //     }
-
-    //     return $films;
-    // }
 
     public static function getAll($recherche = ""): array
     {
